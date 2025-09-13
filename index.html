@@ -3,18 +3,23 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Happy Anniversary</title>
+    <title>Forever Yours</title>
     <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-    <div class="container">
-        <div class="message first">Hello Kuchu Puchu</div>
-        <div class="message second">Happy Anniversary!</div>
-        <div class="decorations">
-            <div class="heart">❤️</div>
-            <div class="star">⭐</div>
-            <div class="flower">🌸</div>
-        </div>
+    <!-- Page 1 -->
+    <div id="page1" class="page active">
+        <h1>Hey Sweetheart!</h1>
+        <button onclick="goToPage2()">Next</button>
     </div>
+
+    <!-- Page 2 -->
+    <div id="page2" class="page">
+        <div class="background"></div>
+        <h1>Forever Yours 💖</h1>
+        <div id="floating-messages"></div>
+    </div>
+
+    <script src="script.js"></script>
 </body>
 </html>
