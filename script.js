@@ -2,7 +2,6 @@ let currentPage = 1;
 let score = 0;
 let gameActive = false;
 let gameInterval;
-let messageInterval;
 
 // Navigation
 function goToPage2() {
@@ -12,72 +11,56 @@ function goToPage2() {
     startGame();
 }
 
-function goToPage3() {
-    document.getElementById('page2').classList.remove('active');
-    document.getElementById('page3').classList.add('active');
-    currentPage = 3;
-    startFinalPage();
-}
-
 // Game functions
 function startGame() {
     score = 0;
     gameActive = true;
     updateScore();
     gameInterval = setInterval(createEmoji, 800);
-    setTimeout(() => endGame(), 10000);
+    setTimeout(()=>endGame(), 10000);
 }
 
 function createEmoji() {
-    if (!gameActive) return;
+    if(!gameActive) return;
     const container = document.getElementById('game-container');
-    const emojis = ['💖', '❤️', '💕', '💝', '💗', '💘', '💙', '💚', '💛', '💜'];
+    const emojis = ['💖','❤️','💕','💝','💗','💘','💙','💚','💛','💜'];
     const emoji = document.createElement('div');
     emoji.className = 'emoji';
     emoji.textContent = emojis[Math.floor(Math.random()*emojis.length)];
-    emoji.style.left = Math.random() * (container.offsetWidth-50) + 'px';
-    emoji.style.top = container.offsetHeight + 'px';
-    emoji.addEventListener('click', function(){ catchEmoji(this); });
+    emoji.style.left=Math.random()*(container.offsetWidth-50)+'px';
+    emoji.style.top=container.offsetHeight+'px';
+    emoji.addEventListener('click',()=>catchEmoji(emoji));
     container.appendChild(emoji);
-    setTimeout(()=>{ if(emoji.parentNode) emoji.parentNode.removeChild(emoji); },3000);
+    setTimeout(()=>{if(emoji.parentNode) emoji.parentNode.removeChild(emoji)},3000);
 }
 
-function catchEmoji(emoji) {
+function catchEmoji(e){
     score+=10;
     updateScore();
-    createSparkles(emoji);
-    if(emoji.parentNode) emoji.parentNode.removeChild(emoji);
+    if(e.parentNode)e.parentNode.removeChild(e);
 }
 
-function createSparkles(element) {
-    const rect = element.getBoundingClientRect();
-    const container = document.getElementById('game-container');
-    for(let i=0;i<5;i++){
-        const sparkle = document.createElement('div');
-        sparkle.className='emoji-sparkle';
-        sparkle.style.left=rect.left-container.getBoundingClientRect().left+'px';
-        sparkle.style.top=rect.top-container.getBoundingClientRect().top+'px';
-        sparkle.style.animationDuration='0.5s';
-        sparkle.style.animationDelay=i*0.1+'s';
-        container.appendChild(sparkle);
-        setTimeout(()=>{ if(sparkle.parentNode) sparkle.parentNode.removeChild(sparkle); },600);
-    }
+function updateScore(){
+    const el=document.getElementById('score');
+    if(el) el.textContent=score;
 }
 
-function updateScore() {
-    const scoreEl=document.getElementById('score');
-    if(scoreEl) scoreEl.textContent=score;
-}
-
-function endGame() {
+function endGame(){
     gameActive=false;
     clearInterval(gameInterval);
     setTimeout(()=>goToPage3(),1000);
 }
 
-// Final Page
+// Final page
+function goToPage3(){
+    document.getElementById('page2').classList.remove('active');
+    document.getElementById('page3').classList.add('active');
+    currentPage = 3;
+    document.getElementById('bg-music').play();
+    startFinalPage();
+}
+
 function startFinalPage(){
-    document.getElementById('final-message').style.display='none';
     startBackgroundLoveMessages();
     animateYears();
 }
@@ -85,16 +68,20 @@ function startFinalPage(){
 function animateYears(){
     const years=[2020,2021,2022,2023,2024,2025];
     const yearEl=document.getElementById('year');
+    const dayMonth=document.getElementById('day-month');
     const finalMessage=document.getElementById('final-message');
     let idx=0;
 
     function nextYear(){
         if(idx<years.length){
             yearEl.textContent=years[idx];
-            yearEl.style.textShadow='0 0 20px #ff69b4,0 0 30px #ff1493,0 0 40px #ffd700';
             createYearEmojis();
-            idx++;
-            setTimeout(()=>{ yearEl.style.textShadow='2px 2px 8px #000'; nextYear(); },1500);
+            yearEl.style.textShadow='0 0 20px #ff69b4,0 0 30px #ff1493,0 0 40px #ffd700';
+            setTimeout(()=>{
+                yearEl.style.textShadow='2px 2px 8px #000';
+                idx++;
+                nextYear();
+            },1500);
         } else {
             setTimeout(()=>{
                 finalMessage.style.display='block';
@@ -108,7 +95,7 @@ function animateYears(){
     nextYear();
 }
 
-// Emoji rain for each year
+// Falling emoji for year animation
 function createYearEmojis(){
     const container=document.getElementById('floating-messages');
     const emojis=['💖','❤️','💕','💝','💗','💘','💙','💚','💛','💜'];
@@ -129,14 +116,12 @@ function createYearEmojis(){
 
 // Background floating love messages
 function startBackgroundLoveMessages(){
-    const messages=[
-        "I love you","I ❤️ you","Te amo","Je t'aime","Ich liebe dich",
-        "I 💖 you","You're my everything","Forever yours",
-        "My heart belongs to you","I adore you","You complete me","I love you more"
-    ];
+    const msgs=["I love you","I ❤️ you","Te amo","Je t'aime","Ich liebe dich",
+                "I 💖 you","You're my everything","Forever yours",
+                "My heart belongs to you","I adore you","You complete me","I love you more"];
     function createMsg(){
         const container=document.getElementById('floating-messages');
-        const msg=messages[Math.floor(Math.random()*messages.length)];
+        const msg=msgs[Math.floor(Math.random()*msgs.length)];
         const e=document.createElement('div');
         e.className='love-message';
         e.textContent=msg;
@@ -148,7 +133,7 @@ function startBackgroundLoveMessages(){
         container.appendChild(e);
         setTimeout(()=>{ if(e.parentNode) e.parentNode.removeChild(e); },8000);
     }
-    for(let i=0;i<12;i++){ setTimeout(()=>createMsg(),i*300); }
+    for(let i=0;i<12;i++) setTimeout(()=>createMsg(),i*300);
     setInterval(createMsg,1000);
 }
 
