@@ -50,6 +50,7 @@ body, html {
     background: radial-gradient(circle at center, #330033, #000000);
     color: #ff69b4;
     overflow: hidden;
+    position: relative;
 }
 
 .message-container {
