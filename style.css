@@ -1,4 +1,4 @@
-body, html {
+ body, html {
     margin: 0;
     padding: 0;
     height: 100%;
@@ -73,13 +73,14 @@ body, html {
     top: 0;
     left: 0;
     z-index: 1;
+    pointer-events: none;
 }
 
 .floating-message {
     position: absolute;
     font-size: 1.5rem;
     color: #ff69b4;
-    animation: floatUp linear infinite;
+    animation: floatUp linear forwards;
 }
 
 @keyframes floatUp {
