@@ -17,9 +17,7 @@ html, body {
     text-align: center; 
 }
 
-.page.active { 
-    display: flex; 
-}
+.page.active { display: flex; }
 
 button {
     padding: 15px 30px; 
@@ -113,10 +111,7 @@ button:hover {
     to { transform: translateY(-30px) scale(0); opacity: 0; }
 }
 
-#page2 p {
-    font-size: 1.5rem; 
-    color: #fff;
-}
+#page2 p { font-size: 1.5rem; color: #fff; }
 
 /* Page3 */
 #page3 {
@@ -169,32 +164,26 @@ button:hover {
 
 .love-message {
     position: absolute;
-    font-size: 1.5rem;
-    opacity: 0.3;
+    opacity: 0.7;
     pointer-events: none;
-    animation: fadeInOut 8s ease-in-out infinite;
+    animation: fadeInOut 8s ease-in-out forwards;
     z-index: 0;
 }
 
 @keyframes fadeInOut {
-    0%, 100% { opacity: 0.1; transform: scale(0.8); }
-    50% { opacity: 0.4; transform: scale(1.1); }
-}
-
-.sparkle-text {
-    animation: sparkle 2s ease-in-out;
-}
-
-@keyframes sparkle {
-    0%, 100% { text-shadow: 3px 3px 10px #000; }
-    25% { text-shadow: 3px 3px 10px #000, 0 0 20px #ff69b4, 0 0 30px #ff69b4; }
-    50% { text-shadow: 3px 3px 10px #000, 0 0 30px #ff1493, 0 0 40px #ff1493, 0 0 50px #ff1493; }
-    75% { text-shadow: 3px 3px 10px #000, 0 0 20px #ffd700, 0 0 30px #ffd700; }
+    0%, 100% { opacity: 0; transform: scale(0.8); }
+    50% { opacity: 1; transform: scale(1.1); }
 }
 
 @keyframes floatUp {
     from { transform: translateY(100%); opacity: 1; }
     to { transform: translateY(-20%); opacity: 0; }
+}
+
+/* Falling emoji for year animation */
+@keyframes emojiFall {
+    0% { transform: translateY(0); opacity: 1; }
+    100% { transform: translateY(80vh); opacity: 0; }
 }
 
 /* Fireworks & Confetti */
@@ -219,7 +208,15 @@ button:hover {
     animation: floatUp 3s linear forwards;
 }
 
-/* Responsive design */
+/* Sparkle for final message */
+@keyframes sparkle {
+    0%,100% { text-shadow: 3px 3px 10px #000; }
+    25% { text-shadow: 3px 3px 10px #000, 0 0 20px #ff69b4, 0 0 30px #ff69b4; }
+    50% { text-shadow: 3px 3px 10px #000, 0 0 30px #ff1493, 0 0 40px #ff1493, 0 0 50px #ff1493; }
+    75% { text-shadow: 3px 3px 10px #000, 0 0 20px #ffd700, 0 0 30px #ffd700; }
+}
+
+/* Responsive */
 @media (max-width: 768px) {
     #page1 h1 { font-size: 2rem; }
     #page2 h1 { font-size: 2.5rem; }
