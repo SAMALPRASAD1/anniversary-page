@@ -1,4 +1,4 @@
- function goToPage2() {
+function goToPage2() {
     document.getElementById('page1').classList.remove('active');
     document.getElementById('page2').classList.add('active');
     startFloatingMessages();
@@ -17,10 +17,10 @@ function createFloatingMessage(container) {
     message.classList.add('floating-message');
     message.textContent = "I love you 💕";
 
-    // Position horizontally randomly within the viewport width
+    // Random horizontal position within the viewport
     message.style.left = Math.random() * 90 + "vw";
 
-    // Set animation duration randomly between 3 and 6 seconds
+    // Random animation duration between 3 and 6 seconds
     message.style.animationDuration = (Math.random() * 3 + 3) + "s";
 
     container.appendChild(message);
