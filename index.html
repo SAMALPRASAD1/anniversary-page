@@ -10,11 +10,19 @@
     <!-- Page 1 -->
     <div id="page1" class="page active">
         <h1>Hello Nikita, this is for you</h1>
-        <button onclick="goToPage2()">Next</button>
+        <button onclick="goToPage2()">Start</button>
     </div>
 
-    <!-- Page 2 -->
+    <!-- Page 2: Game Page -->
     <div id="page2" class="page">
+        <audio id="bg-music" src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" autoplay loop></audio>
+        <h1>Catch the Hearts!</h1>
+        <div id="game-container"></div>
+        <p>Score: <span id="score">0</span></p>
+    </div>
+
+    <!-- Page 3: Anniversary Page -->
+    <div id="page3" class="page">
         <div class="background"></div>
         <div class="message-container">
             <h1>Happy 5th Anniversary</h1>
