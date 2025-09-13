@@ -1,241 +1,34 @@
-/* Base Styles */
-body, html {
-    margin: 0;
-    padding: 0;
-    height: 100%;
-    overflow: hidden;
-    font-family: 'Roboto', sans-serif;
-}
+html, body { margin:0; padding:0; height:100%; overflow:hidden; font-family:Arial,sans-serif; }
+.page { display:none; width:100%; height:100%; justify-content:center; align-items:center; flex-direction:column; position:relative; text-align:center; }
+.page.active { display:flex; }
+button {padding:15px 30px; font-size:1.2rem; cursor:pointer; border:none; border-radius:12px; background:#ff4c61; color:#fff; transition:0.3s;}
+button:hover {transform:scale(1.1); background:#ff1a3c;}
 
-/* General Page */
-.page {
-    display: none;
-    width: 100%;
-    height: 100%;
-    text-align: center;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-}
+/* Page1 */
+#page1 {background: linear-gradient(120deg,#ff9a9e,#fad0c4,#ffdde1); background-size:400% 400%; animation: gradientBG 10s ease infinite;}
+@keyframes gradientBG {0%{background-position:0% 50%} 50%{background-position:100% 50%} 100%{background-position:0% 50%}}
+#page1 h1 {font-family:'Pacifico', cursive; font-size:3rem; color:#ff1a3c; text-shadow:2px 2px 8px #fff; margin-bottom:30px;}
 
-.page.active {
-    display: flex;
-    flex-direction: column;
-}
+/* Page2 */
+#page2 {background:radial-gradient(circle at center,#330033,#000); color:#ff69b4; overflow:hidden;}
+#page2 h1 {font-family:'Great Vibes', cursive; font-size:3rem; margin-top:20px; color:#ff69b4; text-shadow:2px 2px 8px #000;}
+#game-container {position:relative; width:80vw; height:60vh; margin:20px auto; background:#111; border:3px dashed #ff69b4; border-radius:15px; overflow:hidden;}
+.emoji {position:absolute; font-size:2.5rem; cursor:pointer; animation: floatEmoji 3s linear forwards;}
+@keyframes floatEmoji {from{transform:translateY(0);opacity:1;} to{transform:translateY(-150px);opacity:0;}}
+.emoji-sparkle {position:absolute;width:4px;height:4px;background:radial-gradient(circle,#fff,#ff69b4);border-radius:50%;pointer-events:none;opacity:0.8; animation: trailAnim linear forwards;}
+@keyframes trailAnim {from{transform:translateY(0) scale(1);opacity:0.8;} to{transform:translateY(-30px) scale(0);opacity:0;}}
+#page2 p {font-size:1.5rem; color:#fff;}
 
-/* Page 1 */
-#page1 {
-    background: linear-gradient(120deg, #ff9a9e, #fad0c4, #fad0c4, #ffdde1);
-    background-size: 400% 400%;
-    animation: gradientBG 10s ease infinite;
-}
+/* Page3 */
+#page3 {background:radial-gradient(circle at center,#330033,#000); color:#ff69b4; overflow:hidden; position:relative;}
+.message-container {position:relative; z-index:1; top:50%; transform:translateY(-50%);}
+#page3 h2 {font-family:'Pacifico', cursive; font-size:3rem; color:#fff0f5; text-shadow:2px 2px 8px #000; margin-bottom:20px;}
+#final-message {font-family:'Great Vibes', cursive; font-size:4rem; color:#ff69b4; text-shadow:3px 3px 10px #000; display:none;}
+#floating-messages {position:absolute; width:100%; height:100%; overflow:hidden; top:0; left:0; pointer-events:none; z-index:1;}
+.floating-message {position:absolute; font-size:2rem; animation: floatUp linear forwards;}
+@keyframes floatUp {from{transform:translateY(100%);opacity:1;} to{transform:translateY(-20%);opacity:0;}}
 
-@keyframes gradientBG {
-    0% {background-position:0% 50%;}
-    50% {background-position:100% 50%;}
-    100% {background-position:0% 50%;}
-}
-
-#page1 h1 {
-    font-family: 'Pacifico', cursive;
-    font-size: 3rem;
-    color: #ff1a3c;
-    text-shadow: 2px 2px 8px #fff;
-    margin-bottom: 30px;
-}
-
-#page1 button {
-    padding: 15px 30px;
-    font-size: 1.3rem;
-    cursor: pointer;
-    border: none;
-    background-color: #ff4c61;
-    color: white;
-    border-radius: 12px;
-    transition: all 0.3s;
-}
-
-#page1 button:hover {
-    transform: scale(1.1);
-    background-color: #ff1a3c;
-}
-
-/* Page 2 */
-#page2 {
-    background: radial-gradient(circle at center, #330033, #000000);
-    color: #ff69b4;
-    overflow: hidden;
-}
-
-#page2 h1 {
-    font-family: 'Great Vibes', cursive;
-    font-size: 3rem;
-    margin-top: 20px;
-    color: #ff69b4;
-    text-shadow: 2px 2px 8px #000;
-}
-
-#game-container {
-    position: relative;
-    width: 80vw;
-    height: 60vh;
-    margin: 20px auto;
-    background: #111;
-    border: 3px dashed #ff69b4;
-    border-radius: 15px;
-    overflow: hidden;
-}
-
-.emoji {
-    position: absolute;
-    font-size: 2.5rem;
-    cursor: pointer;
-    animation: floatEmoji 3s linear forwards;
-}
-
-@keyframes floatEmoji {
-    from { transform: translateY(0); opacity:1; }
-    to { transform: translateY(-150px); opacity:0; }
-}
-
-.emoji-sparkle {
-    position: absolute;
-    width: 4px;
-    height: 4px;
-    background: radial-gradient(circle, #fff, #ff69b4);
-    border-radius: 50%;
-    pointer-events: none;
-    opacity: 0.8;
-    animation: trailAnim linear forwards;
-}
-
-@keyframes trailAnim {
-    from { transform: translateY(0) scale(1); opacity:0.8; }
-    to { transform: translateY(-30px) scale(0); opacity:0; }
-}
-
-#page2 p {
-    font-size: 1.5rem;
-    color: #fff;
-}
-
-/* Page 3 */
-#page3 {
-    background: radial-gradient(circle at center, #330033, #000000);
-    color: #ff69b4;
-    overflow: hidden;
-}
-
-.message-container {
-    position: relative;
-    z-index: 1;
-    top: 50%;
-    transform: translateY(-50%);
-}
-
-#page3 h1 {
-    font-family: 'Great Vibes', cursive;
-    font-size: 4rem;
-    margin-bottom: 10px;
-    color: #ff69b4;
-    text-shadow: 3px 3px 10px #000;
-}
-
-#page3 h2 {
-    font-family: 'Pacifico', cursive;
-    font-size: 2.5rem;
-    color: #fff0f5;
-    text-shadow: 2px 2px 8px #000;
-}
-
-#year {
-    display: inline-block;
-    background: linear-gradient(90deg, #ff69b4, #ffb347, #ff69b4);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    animation: yearGlow 2s ease-in-out infinite alternate;
-}
-
-@keyframes yearGlow {
-    0% { text-shadow: 0 0 5px #ff69b4, 0 0 10px #ffb347; }
-    100% { text-shadow: 0 0 15px #ff69b4, 0 0 30px #ffb347; }
-}
-
-.background {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background: radial-gradient(circle at center, #330033, #000000);
-    z-index: 0;
-}
-
-/* Floating I love you */
-#floating-messages {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-    top: 0;
-    left: 0;
-    z-index: 1;
-    pointer-events: none;
-}
-
-.floating-message {
-    position: absolute;
-    font-size: 2rem;
-    animation: floatUp linear forwards;
-}
-
-@keyframes floatUp {
-    from { transform: translateY(100%); opacity:1; }
-    to { transform: translateY(-20%); opacity:0; }
-}
-
-/* Sparkles */
-.sparkle {
-    position: absolute;
-    width: 5px;
-    height: 5px;
-    background: radial-gradient(circle, #fff, #ff69b4);
-    border-radius: 50%;
-    pointer-events: none;
-    opacity: 0;
-    animation: sparkleTwinkle linear forwards;
-}
-
-@keyframes sparkleTwinkle {
-    0% { transform: translateY(0) scale(1); opacity:0; filter: hue-rotate(0deg); }
-    50% { opacity:1; filter: hue-rotate(180deg); }
-    100% { transform: translateY(-500px) scale(0); opacity:0; filter: hue-rotate(360deg); }
-}
-
-/* Confetti / Hearts */
-.confetti {
-    position: absolute;
-    font-size: 1.5rem;
-    pointer-events: none;
-    animation: confettiFall linear forwards;
-}
-
-@keyframes confettiFall {
-    0% { transform: translateY(0) rotate(0deg); opacity:1; }
-    100% { transform: translateY(200px) rotate(360deg); opacity:0; }
-}
-
-/* Fireworks */
-.firework {
-    position: absolute;
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    pointer-events: none;
-    background: radial-gradient(circle, #fff, #ff69b4, #ffd700);
-    opacity: 0.9;
-    animation: fireworkBurst linear forwards;
-}
-
-@keyframes fireworkBurst {
-    0% { transform: translate(0,0) scale(1); opacity:1; }
-    100% { transform: translate(var(--x), var(--y)) scale(0.3); opacity:0; }
-}
+/* Fireworks & Confetti */
+.firework {width:10px; height:10px; border-radius:50%; position:absolute; pointer-events:none; animation: fireworkBurst 1.5s forwards;}
+@keyframes fireworkBurst {0%{transform:translate(0,0) scale(1);opacity:1;}100%{transform:translate(var(--x),var(--y)) scale(0.3);opacity:0;}}
+.confetti {position:absolute; pointer-events:none; font-size:15px; animation: floatUp 3s linear forwards;}
