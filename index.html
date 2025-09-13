@@ -1,217 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Happy 5th Anniversary</title>
-
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Great+Vibes&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-
-    <style>
-        /* Base Styles */
-        body, html { margin: 0; padding: 0; height: 100%; overflow: hidden; font-family: 'Roboto', sans-serif; }
-        .page { display: none; width: 100%; height: 100%; text-align: center; justify-content: center; align-items: center; position: relative; }
-        .page.active { display: flex; flex-direction: column; }
-
-        /* Page 1 */
-        #page1 {
-            background: linear-gradient(120deg, #ff9a9e, #fad0c4, #ffdde1);
-            background-size: 400% 400%;
-            animation: gradientBG 10s ease infinite;
-        }
-        @keyframes gradientBG { 0% {background-position:0% 50%;} 50% {background-position:100% 50%;} 100% {background-position:0% 50%;} }
-
-        #page1 h1 { font-family: 'Pacifico', cursive; font-size: 3rem; color: #ff1a3c; text-shadow: 2px 2px 8px #fff; margin-bottom: 30px; }
-        #page1 button { padding: 15px 30px; font-size: 1.3rem; cursor: pointer; border: none; background-color: #ff4c61; color: white; border-radius: 12px; transition: all 0.3s; }
-        #page1 button:hover { transform: scale(1.1); background-color: #ff1a3c; }
-
-        /* Page 2 */
-        #page2 { background: radial-gradient(circle at center, #330033, #000000); color: #ff69b4; overflow: hidden; }
-        #page2 h1 { font-family: 'Great Vibes', cursive; font-size: 3rem; margin-top: 20px; color: #ff69b4; text-shadow: 2px 2px 8px #000; }
-        #game-container { position: relative; width: 80vw; height: 60vh; margin: 20px auto; background: #111; border: 3px dashed #ff69b4; border-radius: 15px; overflow: hidden; }
-        .emoji { position: absolute; font-size: 2.5rem; cursor: pointer; animation: floatEmoji 3s linear forwards; }
-        @keyframes floatEmoji { from { transform: translateY(0); opacity:1; } to { transform: translateY(-150px); opacity:0; } }
-        .emoji-sparkle { position: absolute; width: 4px; height: 4px; background: radial-gradient(circle, #fff, #ff69b4); border-radius: 50%; pointer-events: none; opacity: 0.8; animation: trailAnim linear forwards; }
-        @keyframes trailAnim { from { transform: translateY(0) scale(1); opacity:0.8; } to { transform: translateY(-30px) scale(0); opacity:0; } }
-        #page2 p { font-size: 1.5rem; color: #fff; }
-
-        /* Page 3 */
-        #page3 { background: radial-gradient(circle at center, #330033, #000000); color: #ff69b4; overflow: hidden; position: relative; }
-        .message-container { position: relative; z-index: 1; top: 50%; transform: translateY(-50%); }
-        #page3 h2 { font-family: 'Pacifico', cursive; font-size: 3rem; color: #fff0f5; text-shadow: 2px 2px 8px #000; margin-bottom: 20px; }
-        #final-message { font-family: 'Great Vibes', cursive; font-size: 4rem; color: #ff69b4; text-shadow: 3px 3px 10px #000; display: none; }
-
-        /* Floating I love you messages */
-        #floating-messages { position: absolute; width: 100%; height: 100%; overflow: hidden; top:0; left:0; pointer-events: none; z-index:1; }
-        .floating-message { position: absolute; font-size: 2rem; animation: floatUp linear forwards; }
-        @keyframes floatUp { from { transform: translateY(100%); opacity:1; } to { transform: translateY(-20%); opacity:0; } }
-
-        /* Fireworks & Confetti */
-        .confetti, .firework { pointer-events: none; position: absolute; border-radius: 50%; }
-        .firework { width:8px; height:8px; background: radial-gradient(circle, #fff, #ff69b4, #ffd700); animation: fireworkBurst 1.5s forwards; }
-        @keyframes fireworkBurst { 0% { transform: translate(0,0) scale(1); opacity:1; } 100% { transform: translate(var(--x), var(--y)) scale(0.3); opacity:0; } }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy 5th Anniversary</title>
+<link rel="stylesheet" href="style.css">
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Great+Vibes&display=swap" rel="stylesheet">
 </head>
 <body>
 
-    <!-- Page 1 -->
-    <div id="page1" class="page active">
-        <h1>Hello Nikita, this is for you 💖</h1>
-        <button onclick="goToPage2()">Start</button>
+<!-- Page1 -->
+<div id="page1" class="page active">
+    <h1>Hello Nikita, this is for you 💖</h1>
+    <button onclick="goToPage2()">Start</button>
+</div>
+
+<!-- Page2 -->
+<div id="page2" class="page">
+    <h1>Catch the Love Emojis! ✨</h1>
+    <div id="game-container"></div>
+    <p>Score: <span id="score">0</span></p>
+</div>
+
+<!-- Page3 -->
+<div id="page3" class="page">
+    <div class="message-container">
+        <h2>Sep 17 <span id="year">2020</span></h2>
+        <h1 id="final-message">Happy 5th Anniversary 💖</h1>
     </div>
+    <div id="floating-messages"></div>
+</div>
 
-    <!-- Page 2 -->
-    <div id="page2" class="page">
-        <audio id="bg-music" src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" autoplay loop></audio>
-        <h1>Catch the Love Emojis! ✨</h1>
-        <div id="game-container"></div>
-        <p>Score: <span id="score">0</span></p>
-    </div>
-
-    <!-- Page 3 -->
-    <div id="page3" class="page">
-        <div class="background"></div>
-        <div class="message-container">
-            <h2>Sep 17 <span id="year">2020</span></h2>
-            <h1 id="final-message">Happy 5th Anniversary 💖</h1>
-        </div>
-        <div id="floating-messages"></div>
-    </div>
-
-    <script>
-        /* Page Navigation */
-        function goToPage2() {
-            document.getElementById('page1').classList.remove('active');
-            document.getElementById('page2').classList.add('active');
-            startGame();
-        }
-
-        /* Game */
-        function startGame() {
-            const container = document.getElementById('game-container');
-            const scoreElement = document.getElementById('score');
-            let score = 0;
-            const gameDuration = 10000;
-
-            const interval = setInterval(()=>{ createEmoji(container); },600);
-
-            container.addEventListener('click', function(e){
-                if(e.target.classList.contains('emoji')){
-                    container.removeChild(e.target);
-                    score++;
-                    scoreElement.textContent = score;
-                }
-            });
-
-            setTimeout(()=>{ clearInterval(interval); goToPage3(); }, gameDuration);
-        }
-
-        function createEmoji(container){
-            const emojis=["💖","😍","🥰","💕","💞","💓","💘","💗"];
-            const emoji=document.createElement('div');
-            emoji.classList.add('emoji');
-            emoji.textContent=emojis[Math.floor(Math.random()*emojis.length)];
-            const maxX=container.clientWidth-50;
-            const maxY=container.clientHeight-50;
-            emoji.style.left=Math.random()*maxX+"px";
-            emoji.style.top=Math.random()*maxY+"px";
-            container.appendChild(emoji);
-
-            const sparkleInterval=setInterval(()=>{
-                const sparkle=document.createElement('div');
-                sparkle.classList.add('emoji-sparkle');
-                sparkle.style.left=emoji.offsetLeft+15+"px";
-                sparkle.style.top=emoji.offsetTop+15+"px";
-                sparkle.style.width=sparkle.style.height=(Math.random()*4+3)+"px";
-                container.appendChild(sparkle);
-                setTimeout(()=>{ if(container.contains(sparkle)) container.removeChild(sparkle); },1000);
-            },100);
-
-            setTimeout(()=>{
-                clearInterval(sparkleInterval);
-                if(container.contains(emoji)) container.removeChild(emoji);
-            },3000);
-        }
-
-        /* Page 3 */
-        function goToPage3(){
-            document.getElementById('page2').classList.remove('active');
-            document.getElementById('page3').classList.add('active');
-            startFloatingMessages();
-            animateYearsWithBoom();
-        }
-
-        /* Floating messages */
-        function startFloatingMessages(){
-            const container=document.getElementById('floating-messages');
-            setInterval(()=>{
-                const msg=document.createElement('div');
-                msg.classList.add('floating-message');
-                const messages=["I love you 💖","You are my world 🌎","Forever us 💕"];
-                msg.textContent=messages[Math.floor(Math.random()*messages.length)];
-                msg.style.left=Math.random()*90+"vw";
-                msg.style.fontSize=(Math.random()*1+2)+"rem";
-                container.appendChild(msg);
-                setTimeout(()=>{ if(container.contains(msg)) container.removeChild(msg); },5000);
-            },500);
-        }
-
-        /* Animate years with boom */
-        function animateYearsWithBoom(){
-            const yearSpan=document.getElementById('year');
-            const finalMsg=document.getElementById('final-message');
-            let currentYear=2020;
-            const endYear=2025;
-
-            const interval=setInterval(()=>{
-                yearSpan.textContent=currentYear;
-                if(currentYear===endYear){
-                    clearInterval(interval);
-                    fireworkBurst();
-                    createConfetti();
-                    setTimeout(()=>{ finalMsg.style.display="block"; },800);
-                }
-                currentYear++;
-            },1000);
-        }
-
-        /* Fireworks */
-        function fireworkBurst(){
-            const container=document.getElementById('page3');
-            const colors=["#ff69b4","#ffb347","#ffd700","#ff1a3c","#ff6f91"];
-            for(let i=0;i<50;i++){
-                const firework=document.createElement('div');
-                firework.classList.add('firework');
-                const angle=Math.random()*2*Math.PI;
-                const distance=Math.random()*200+50;
-                const x=Math.cos(angle)*distance+"px";
-                const y=Math.sin(angle)*distance+"px";
-                firework.style.setProperty('--x',x);
-                firework.style.setProperty('--y',y);
-                firework.style.left="50%";
-                firework.style.top="50%";
-                container.appendChild(firework);
-                setTimeout(()=>{ if(container.contains(firework)) container.removeChild(firework); },1500);
-            }
-        }
-
-        /* Confetti */
-        function createConfetti(){
-            const container=document.getElementById('page3');
-            const emojis=["💖","💘","💝","💞","💗","💓","🎉","✨"];
-            for(let i=0;i<50;i++){
-                const confetti=document.createElement('div');
-                confetti.classList.add('confetti');
-                confetti.textContent=emojis[Math.floor(Math.random()*emojis.length)];
-                confetti.style.left=Math.random()*window.innerWidth+"px";
-                confetti.style.top=Math.random()*window.innerHeight+"px";
-                confetti.style.fontSize=(Math.random()*20+15)+"px";
-                confetti.style.animation=`floatUp 3s linear forwards`;
-                container.appendChild(confetti);
-                setTimeout(()=>{ if(container.contains(confetti)) container.removeChild(confetti); },3000);
-            }
-        }
-    </script>
+<script src="script.js"></script>
 </body>
 </html>
