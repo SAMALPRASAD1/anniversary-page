@@ -3,7 +3,7 @@ body, html {
     padding: 0;
     height: 100%;
     overflow: hidden;
-    font-family: Arial, sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .page {
@@ -50,7 +50,53 @@ body, html {
     background: radial-gradient(circle at center, #330033, #000000);
     color: #ff69b4;
     overflow: hidden;
+}
+
+#page2 h1 {
+    margin-top: 20px;
+    font-size: 2.5rem;
+}
+
+#game-container {
     position: relative;
+    width: 80vw;
+    height: 60vh;
+    margin: 20px auto;
+    background: #111;
+    border: 2px solid #ff69b4;
+    overflow: hidden;
+}
+
+.heart {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    background: red;
+    clip-path: polygon(50% 0%, 100% 35%, 80% 100%, 50% 80%, 20% 100%, 0% 35%);
+    cursor: pointer;
+    animation: floatHeart 3s linear forwards;
+}
+
+@keyframes floatHeart {
+    from {
+        transform: translateY(0);
+        opacity: 1;
+    }
+    to {
+        transform: translateY(-150px);
+        opacity: 0;
+    }
+}
+
+#page2 p {
+    font-size: 1.5rem;
+    color: #fff;
+}
+
+#page3 {
+    background: radial-gradient(circle at center, #330033, #000000);
+    color: #ff69b4;
+    overflow: hidden;
 }
 
 .message-container {
@@ -60,13 +106,16 @@ body, html {
     transform: translateY(-50%);
 }
 
-#page2 h1 {
-    font-size: 3rem;
+#page3 h1 {
+    font-family: 'Brush Script MT', cursive, sans-serif;
+    font-size: 3.5rem;
     margin-bottom: 10px;
+    text-shadow: 2px 2px 8px #000;
 }
 
-#page2 h2 {
+#page3 h2 {
     font-size: 2rem;
+    text-shadow: 1px 1px 4px #000;
 }
 
 .background {
