@@ -1,34 +1,229 @@
-html, body { margin:0; padding:0; height:100%; overflow:hidden; font-family:Arial,sans-serif; }
-.page { display:none; width:100%; height:100%; justify-content:center; align-items:center; flex-direction:column; position:relative; text-align:center; }
-.page.active { display:flex; }
-button {padding:15px 30px; font-size:1.2rem; cursor:pointer; border:none; border-radius:12px; background:#ff4c61; color:#fff; transition:0.3s;}
-button:hover {transform:scale(1.1); background:#ff1a3c;}
+html, body { 
+    margin: 0; 
+    padding: 0; 
+    height: 100%; 
+    overflow: hidden; 
+    font-family: Arial, sans-serif; 
+}
+
+.page { 
+    display: none; 
+    width: 100%; 
+    height: 100%; 
+    justify-content: center; 
+    align-items: center; 
+    flex-direction: column; 
+    position: relative; 
+    text-align: center; 
+}
+
+.page.active { 
+    display: flex; 
+}
+
+button {
+    padding: 15px 30px; 
+    font-size: 1.2rem; 
+    cursor: pointer; 
+    border: none; 
+    border-radius: 12px; 
+    background: #ff4c61; 
+    color: #fff; 
+    transition: 0.3s;
+}
+
+button:hover {
+    transform: scale(1.1); 
+    background: #ff1a3c;
+}
 
 /* Page1 */
-#page1 {background: linear-gradient(120deg,#ff9a9e,#fad0c4,#ffdde1); background-size:400% 400%; animation: gradientBG 10s ease infinite;}
-@keyframes gradientBG {0%{background-position:0% 50%} 50%{background-position:100% 50%} 100%{background-position:0% 50%}}
-#page1 h1 {font-family:'Pacifico', cursive; font-size:3rem; color:#ff1a3c; text-shadow:2px 2px 8px #fff; margin-bottom:30px;}
+#page1 {
+    background: linear-gradient(120deg, #ff9a9e, #fad0c4, #ffdde1); 
+    background-size: 400% 400%; 
+    animation: gradientBG 10s ease infinite;
+}
+
+@keyframes gradientBG {
+    0% { background-position: 0% 50% }
+    50% { background-position: 100% 50% }
+    100% { background-position: 0% 50% }
+}
+
+#page1 h1 {
+    font-family: 'Pacifico', cursive; 
+    font-size: 3rem; 
+    color: #ff1a3c; 
+    text-shadow: 2px 2px 8px #fff; 
+    margin-bottom: 30px;
+}
 
 /* Page2 */
-#page2 {background:radial-gradient(circle at center,#330033,#000); color:#ff69b4; overflow:hidden;}
-#page2 h1 {font-family:'Great Vibes', cursive; font-size:3rem; margin-top:20px; color:#ff69b4; text-shadow:2px 2px 8px #000;}
-#game-container {position:relative; width:80vw; height:60vh; margin:20px auto; background:#111; border:3px dashed #ff69b4; border-radius:15px; overflow:hidden;}
-.emoji {position:absolute; font-size:2.5rem; cursor:pointer; animation: floatEmoji 3s linear forwards;}
-@keyframes floatEmoji {from{transform:translateY(0);opacity:1;} to{transform:translateY(-150px);opacity:0;}}
-.emoji-sparkle {position:absolute;width:4px;height:4px;background:radial-gradient(circle,#fff,#ff69b4);border-radius:50%;pointer-events:none;opacity:0.8; animation: trailAnim linear forwards;}
-@keyframes trailAnim {from{transform:translateY(0) scale(1);opacity:0.8;} to{transform:translateY(-30px) scale(0);opacity:0;}}
-#page2 p {font-size:1.5rem; color:#fff;}
+#page2 {
+    background: radial-gradient(circle at center, #330033, #000); 
+    color: #ff69b4; 
+    overflow: hidden;
+}
+
+#page2 h1 {
+    font-family: 'Great Vibes', cursive; 
+    font-size: 3rem; 
+    margin-top: 20px; 
+    color: #ff69b4; 
+    text-shadow: 2px 2px 8px #000;
+}
+
+#game-container {
+    position: relative; 
+    width: 80vw; 
+    height: 60vh; 
+    margin: 20px auto; 
+    background: #111; 
+    border: 3px dashed #ff69b4; 
+    border-radius: 15px; 
+    overflow: hidden;
+}
+
+.emoji {
+    position: absolute; 
+    font-size: 2.5rem; 
+    cursor: pointer; 
+    animation: floatEmoji 3s linear forwards;
+    user-select: none;
+}
+
+@keyframes floatEmoji {
+    from { transform: translateY(0); opacity: 1; }
+    to { transform: translateY(-150px); opacity: 0; }
+}
+
+.emoji-sparkle {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: radial-gradient(circle, #fff, #ff69b4);
+    border-radius: 50%;
+    pointer-events: none;
+    opacity: 0.8;
+    animation: trailAnim linear forwards;
+}
+
+@keyframes trailAnim {
+    from { transform: translateY(0) scale(1); opacity: 0.8; }
+    to { transform: translateY(-30px) scale(0); opacity: 0; }
+}
+
+#page2 p {
+    font-size: 1.5rem; 
+    color: #fff;
+}
 
 /* Page3 */
-#page3 {background:radial-gradient(circle at center,#330033,#000); color:#ff69b4; overflow:hidden; position:relative;}
-.message-container {position:relative; z-index:1; top:50%; transform:translateY(-50%);}
-#page3 h2 {font-family:'Pacifico', cursive; font-size:3rem; color:#fff0f5; text-shadow:2px 2px 8px #000; margin-bottom:20px;}
-#final-message {font-family:'Great Vibes', cursive; font-size:4rem; color:#ff69b4; text-shadow:3px 3px 10px #000; display:none;}
-#floating-messages {position:absolute; width:100%; height:100%; overflow:hidden; top:0; left:0; pointer-events:none; z-index:1;}
-.floating-message {position:absolute; font-size:2rem; animation: floatUp linear forwards;}
-@keyframes floatUp {from{transform:translateY(100%);opacity:1;} to{transform:translateY(-20%);opacity:0;}}
+#page3 {
+    background: radial-gradient(circle at center, #330033, #000); 
+    color: #ff69b4; 
+    overflow: hidden; 
+    position: relative;
+}
+
+.message-container {
+    position: relative; 
+    z-index: 1; 
+    top: 50%; 
+    transform: translateY(-50%);
+}
+
+#page3 h2 {
+    font-family: 'Pacifico', cursive; 
+    font-size: 3rem; 
+    color: #fff0f5; 
+    text-shadow: 2px 2px 8px #000; 
+    margin-bottom: 20px;
+}
+
+#final-message {
+    font-family: 'Great Vibes', cursive; 
+    font-size: 4rem; 
+    color: #ff69b4; 
+    text-shadow: 3px 3px 10px #000; 
+    display: none;
+}
+
+#floating-messages {
+    position: absolute; 
+    width: 100%; 
+    height: 100%; 
+    overflow: hidden; 
+    top: 0; 
+    left: 0; 
+    pointer-events: none; 
+    z-index: 1;
+}
+
+.floating-message {
+    position: absolute; 
+    font-size: 2rem; 
+    animation: floatUp linear forwards;
+    font-family: 'Pacifico', cursive;
+}
+
+.love-message {
+    position: absolute;
+    font-size: 1.5rem;
+    opacity: 0.3;
+    pointer-events: none;
+    animation: fadeInOut 8s ease-in-out infinite;
+    z-index: 0;
+}
+
+@keyframes fadeInOut {
+    0%, 100% { opacity: 0.1; transform: scale(0.8); }
+    50% { opacity: 0.4; transform: scale(1.1); }
+}
+
+.sparkle-text {
+    animation: sparkle 2s ease-in-out;
+}
+
+@keyframes sparkle {
+    0%, 100% { text-shadow: 3px 3px 10px #000; }
+    25% { text-shadow: 3px 3px 10px #000, 0 0 20px #ff69b4, 0 0 30px #ff69b4; }
+    50% { text-shadow: 3px 3px 10px #000, 0 0 30px #ff1493, 0 0 40px #ff1493, 0 0 50px #ff1493; }
+    75% { text-shadow: 3px 3px 10px #000, 0 0 20px #ffd700, 0 0 30px #ffd700; }
+}
+
+@keyframes floatUp {
+    from { transform: translateY(100%); opacity: 1; }
+    to { transform: translateY(-20%); opacity: 0; }
+}
 
 /* Fireworks & Confetti */
-.firework {width:10px; height:10px; border-radius:50%; position:absolute; pointer-events:none; animation: fireworkBurst 1.5s forwards;}
-@keyframes fireworkBurst {0%{transform:translate(0,0) scale(1);opacity:1;}100%{transform:translate(var(--x),var(--y)) scale(0.3);opacity:0;}}
-.confetti {position:absolute; pointer-events:none; font-size:15px; animation: floatUp 3s linear forwards;}
+.firework {
+    width: 10px; 
+    height: 10px; 
+    border-radius: 50%; 
+    position: absolute; 
+    pointer-events: none; 
+    animation: fireworkBurst 1.5s forwards;
+}
+
+@keyframes fireworkBurst {
+    0% { transform: translate(0, 0) scale(1); opacity: 1; }
+    100% { transform: translate(var(--x), var(--y)) scale(0.3); opacity: 0; }
+}
+
+.confetti {
+    position: absolute; 
+    pointer-events: none; 
+    font-size: 15px; 
+    animation: floatUp 3s linear forwards;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    #page1 h1 { font-size: 2rem; }
+    #page2 h1 { font-size: 2.5rem; }
+    #page3 h2 { font-size: 2rem; }
+    #final-message { font-size: 3rem; }
+    .floating-message { font-size: 1.5rem; }
+}
