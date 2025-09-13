@@ -4,19 +4,23 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Happy 5th Anniversary</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Great+Vibes&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="style.css" />
 </head>
 <body>
     <!-- Page 1 -->
     <div id="page1" class="page active">
-        <h1>Hello Nikita, this is for you</h1>
+        <h1>Hello Nikita, this is for you 💖</h1>
         <button onclick="goToPage2()">Start</button>
     </div>
 
     <!-- Page 2: Game Page -->
     <div id="page2" class="page">
         <audio id="bg-music" src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" autoplay loop></audio>
-        <h1>Catch the Hearts!</h1>
+        <h1>Catch the Love Emojis! ✨</h1>
         <div id="game-container"></div>
         <p>Score: <span id="score">0</span></p>
     </div>
@@ -26,7 +30,7 @@
         <div class="background"></div>
         <div class="message-container">
             <h1>Happy 5th Anniversary</h1>
-            <h2>Sep 17</h2>
+            <h2>Sep 17 <span id="year">2020</span></h2>
         </div>
         <div id="floating-messages"></div>
     </div>
